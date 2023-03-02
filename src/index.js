@@ -65,13 +65,13 @@ function createCountryNameList(elements) {
 
 function createCountryNameInfo(elements) {
   return elements.map(({ name, capital, population, flags, languages }) => {
-    `<img class='country-info__image' 
+    return `<img class='country-info__image' 
         src='${flags.svg}' 
         alt='${name.official}' 
         width="120" 
         height="80">
     <h1 class='country-info__title'>
-      ${name.official}
+      ${name}
     </h1>
     <ul class='country-info__list'>
       <li class='country-info__item'>
