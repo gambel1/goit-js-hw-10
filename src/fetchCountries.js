@@ -5,12 +5,10 @@ function fetchCountries(name) {
     `${BASE_URL}/v2/name/${name}?fields=name,capital,population,flags,languages`
   ).then(response => {
     if (!response.ok) {
-      return Promise.reject(new Error());
+      throw new Error(response.status);
     }
     return response.json();
   });
 }
-
-fetchCountries();
 
 export { fetchCountries };

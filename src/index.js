@@ -12,17 +12,24 @@ const countryInfo = document.querySelector('.country-info');
 inputEl.addEventListener('input', debounce(onInputHandler, DEBOUNCE_DELAY));
 
 function onInputHandler(event) {
-  const countryName = event.target.values.trim();
+  const countryName = event.target.value.trim();
+
+  if (!countryName) {
+    clearTemplate();
+    return;
+  }
 
   fetchCountries(countryName)
     .then(data => {
       if (data.length > 10) {
         specificAlert();
+        clearTemplate();
         return;
       }
       renderTemplate(data);
     })
     .catch(error => {
+      clearTemplate();
       errorAlert();
     });
 }
@@ -30,6 +37,7 @@ function onInputHandler(event) {
 function renderTemplate(elements) {
   const template = '';
   const templateHandle = '';
+  clearTemplate();
 
   if (elements.length === 1) {
     template = createCountryNameInfo;
@@ -42,8 +50,9 @@ function renderTemplate(elements) {
 }
 
 function createCountryNameList(elements) {
-  return elements.map(({ flags, name }) => {
-    `<li class='country-list__item'> 
+  return elements
+    .map(({ flags, name }) => {
+      `<li class='country-list__item'> 
       <img class='country-list__image' 
       src='${flags.svg}' 
       alt='${name.official}' 
@@ -51,7 +60,8 @@ function createCountryNameList(elements) {
       height='40'>
       <span>${name.official}</span>
     </li>`;
-  });
+    })
+    .join();
 }
 
 function createCountryNameInfo(elements) {
@@ -81,16 +91,20 @@ function createCountryNameInfo(elements) {
     `;
   });
 }
-console.log(createCountryNameInfo);
 
 function specificAlert() {
-  Notiflix.Notify.info(
+  Notify.info(
     'Too many matches found. Please enter a more specific name.'
   );
 }
 
 function errorAlert() {
-  Notiflix.Notify.warning('Oops, there is no country with that name');
+  Notify.warning('Oops, there is no country with that name');
+}
+
+function clearTemplate() {
+  countryInfo.innerHTML = '';
+  countryList.innerHTML = '';
 }
 
 function createTemplate(refs, markup) {
