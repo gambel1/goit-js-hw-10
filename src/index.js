@@ -35,15 +35,15 @@ function onInputHandler(event) {
 }
 
 function renderTemplate(elements) {
-  const template = '';
-  const templateHandle = '';
+  let template = '';
+  let templateHandle = '';
   clearTemplate();
 
   if (elements.length === 1) {
-    template = createCountryNameInfo;
+    template = createCountryNameInfo(elements);
     templateHandle = countryInfo;
   } else {
-    template = createCountryNameList;
+    template = createCountryNameList(elements);
     templateHandle = countryList;
   }
   createTemplate(template, templateHandle);
