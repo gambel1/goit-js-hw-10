@@ -46,7 +46,7 @@ function renderTemplate(elements) {
     template = createCountryNameList(elements);
     templateHandle = countryList;
   }
-  createTemplate(template, templateHandle);
+  createTemplate(templateHandle, template);
 }
 
 function createCountryNameList(elements) {
