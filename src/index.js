@@ -88,7 +88,7 @@ function createCountryNameInfo(elements) {
       </li>
     </ul>
     `;
-  });
+  }).join();
 }
 
 function specificAlert() {
