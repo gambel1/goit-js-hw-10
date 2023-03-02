@@ -52,16 +52,15 @@ function renderTemplate(elements) {
 function createCountryNameList(elements) {
   return elements
     .map(({ flags, name }) => {
-      `<li class='country-list__item'> 
+      return `<li class='country-list__item'> 
       <img class='country-list__image' 
       src='${flags.svg}' 
       alt='${name.official}' 
       width='60' 
       height='40'>
-      <span>${name.official}</span>
+      <span>${name}</span>
     </li>`;
-    })
-    .join();
+    }).join();
 }
 
 function createCountryNameInfo(elements) {
