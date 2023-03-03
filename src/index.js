@@ -56,45 +56,48 @@ function createCountryNameList(elements) {
       <img class='country-list__image' 
       src='${flags.svg}' 
       alt='${name.official}' 
-      width='60' 
-      height='40'>
-      <span>${name}</span>
+      width='40' 
+      height='25'>
+      <span class='country-list__name'>${name.official}</span>
     </li>`;
-    }).join();
+    })
+    .join('');
 }
 
 function createCountryNameInfo(elements) {
-  return elements.map(({ name, capital, population, flags, languages }) => {
-    return `<img class='country-info__image' 
+  return elements
+    .map(({ name, capital, population, flags, languages }) => {
+      return `<div class='country-info__box'>
+      <img class='country-info__image' 
         src='${flags.svg}' 
         alt='${name.official}' 
-        width="120" 
-        height="80">
+        width="45" 
+        height="35">
     <h1 class='country-info__title'>
-      ${name}
+      ${name.official}
     </h1>
+    </div>
     <ul class='country-info__list'>
       <li class='country-info__item'>
-          <span>Capital:</span>
+          <span class='country-info__wrap'>Capital:</span>
           ${capital}
       </li>
       <li class='country-info__item'>
-          <span>Population:</span>
+          <span class='country-info__wrap'>Population:</span>
           ${population}
       </li>
       <li class='country-info__item'>
-          <span>Languages:</span>
+          <span class='country-info__wrap'>Languages:</span>
           ${Object.values(languages)}
       </li>
     </ul>
     `;
-  }).join();
+    })
+    .join('');
 }
 
 function specificAlert() {
-  Notify.info(
-    'Too many matches found. Please enter a more specific name.'
-  );
+  Notify.info('Too many matches found. Please enter a more specific name.');
 }
 
 function errorAlert() {
